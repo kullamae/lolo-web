@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kullamae/lolo-web/issues"
   },
-  "homepage": "https://github.com/kullamae/lolo-web#readme"
+  "homepage": "https://github.com/kullamae/lolo-web#readme",
+  "dependencies": {
+    "@postlight/mercury-parser": "^2.2.0"
+  }
 }
