@@ -19,5 +19,8 @@
   "homepage": "https://github.com/kullamae/lolo-web#readme",
   "dependencies": {
     "@postlight/mercury-parser": "^2.2.0"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }

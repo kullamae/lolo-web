@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const Mercury = require('@postlight/mercury-parser');
 const FeedHandler = require('./FeedHandler')
-const port = 4000
+const port = process.env.PORT || 4000
 
 http.createServer((request, response) => {
   let filePath = '.' + request.url
