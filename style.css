@@ -302,13 +302,7 @@ body.popup--loaded .popup__loader {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-  }
-
-  .article__media {
-    width: 0;
-    height: 100%;
-    padding-top: 0%;
-    padding-right: 50%;
+    flex-direction: column;
   }
 
   .popup__container {
