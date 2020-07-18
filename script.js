@@ -31,24 +31,33 @@ site.fn = {
   getArticleData(event) {
     const article = event.target.closest('article')
     const link = article ? article.getAttribute('data-link') : null
+    const cacheKey = btoa(link)
+
     site.el.body.classList.add(site.classes.popup.opened)
+
     if (article && link) {
-      fetch('./article', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({link}),
-      })
-        .then((response) => {
-          return response.json().then((content) => {
-            site.fn.openArticle(content)
-            site.el.body.classList.add(site.classes.popup.loaded)
+      if (!localStorage.getItem(cacheKey)) {
+        fetch('./article', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({link}),
+        })
+          .then((response) => {
+            return response.json().then((content) => {
+              site.fn.openArticle(content)
+              site.el.body.classList.add(site.classes.popup.loaded)
+              localStorage.setItem(cacheKey, JSON.stringify(content))
+            })
           })
-        })
-        .catch((error) => {
-          console.log('Request failed', error)
-        })
+          .catch((error) => {
+            console.log('Request failed', error)
+          })
+      } else {
+        site.fn.openArticle(JSON.parse(localStorage.getItem(cacheKey)))
+        site.el.body.classList.add(site.classes.popup.loaded)
+      }
     }
   },
   openArticle(data) {
