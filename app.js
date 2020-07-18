@@ -1,6 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
+const Mercury = require('@postlight/mercury-parser');
 const FeedHandler = require('./FeedHandler')
 const port = 4000
 
@@ -13,6 +14,24 @@ http.createServer((request, response) => {
     return FeedHandler.getFeedData().then(result => {
       response.end(JSON.stringify(result))
     });
+  } else if (filePath == './article') {
+    return new Promise( () => {
+      if (request.method === 'POST') {
+        let requestBody = ''
+        request.on('data', chunk => {
+          requestBody += chunk.toString()
+        });
+        request.on('end', async () => {
+          const link = JSON.parse(requestBody).link
+          if (link) {
+            const result = await Mercury.parse(link)
+            response.end(JSON.stringify(result))
+          } else {
+            response.end('Link not found')
+          }
+        })
+      }
+    })
   }
 
   const extension = String(path.extname(filePath)).toLowerCase()

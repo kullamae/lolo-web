@@ -4,10 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lolo web</title>
+  <link rel="stylesheet" type="text/css" href="./style.css"></link>
 </head>
 <body>
   <div class="loader cover"><div class="lds-ripple"><div></div><div></div></div></div>
   <main class="content"></main>
+  <section class="popup cover">
+    <div class="popup__bg cover"></div>
+    <div class="popup__close">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 357 357" style="enable-background:new 0 0 357 357;" xml:space="preserve"><polygon fill="#fff" points="357,35.7 321.3,0 178.5,142.8 35.7,0 0,35.7 142.8,178.5 0,321.3 35.7,357 178.5,214.2 321.3,357 357,321.3     214.2,178.5"/></svg>
+    </div>
+    <div class="popup__container">
+      <div class="popup__loader cover">
+        <div class="lds-ripple"><div></div><div></div></div>
+      </div>
+      <div class="popup__content">
+        <h2 class="popup__title"></h2>
+        <div class="popup__text"></div>
+      </div>
+    </div>
+  </section>
   <script src="./script.js"></script>
 </body>
 </html>
